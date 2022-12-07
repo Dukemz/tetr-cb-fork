@@ -84,6 +84,7 @@ function draw() {
     for (let i = 0; i < 1; i++) {
         // move the shape down at a rate of (shape Fall Rate) drops per second
         if (!paused && frameCount % int(30 / shapeFallRate) === 0) {
+            game.moveShapeDown();
             //if (ai.movementPlan === null) {
             //    ai.calculateMovementPlan2(game.currentShape, game.heldShape, game.nextShape, game.deadBlocksMatrix);
             //}
