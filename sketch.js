@@ -36,8 +36,12 @@ function setup() {
     window.canvas = createCanvas(800, 800);
     window.canvas.parent("canvas");
 
-    population = new Population(populationSize);
-    // game = new Game(gameWidthBlocks, gameHeightBlocks);
+    // dukemz gaming
+    // uncomment this line for AI
+    // population = new Population(populationSize);
+
+    // comment this line for ai
+    game = new Game(gameWidthBlocks, gameHeightBlocks);
     // ai = new AI();
     // ai.calculateMovementPlan2(game.currentShape, game.heldShape, game.nextShape, game.deadBlocksMatrix);
     frameRate(10);
@@ -48,7 +52,8 @@ function draw() {
 
     push();
 
-
+    // uncomment this statement for ai
+    /*
     if (!population.areAllPlayersDead()) {
         population.show();
         if (!paused) population.update();
@@ -57,59 +62,63 @@ function draw() {
         population.show();
         population.update();
     }
-    // game.draw();
+    */
 
-    // writeCurrentOptimisations();
-    // writeCurrentMatrixStats();
+    // comment everything after this for ai
+    game.draw();
 
-    // ai.showPossibleMoveNo(possibleAIMoveCounter);
-    // if (ai.possibleEndPositions.length > 0 && frameCount % 5 === 0) {
-    //     possibleAIMoveCounter = (possibleAIMoveCounter + 1) % ai.possibleEndPositions.length;
-    // }
-    // ai.showBestMove();
-    // checkInput();
+    writeCurrentOptimisations();
+    writeCurrentMatrixStats();
 
-    // if (game.justTetrised) {
-    //     return;
-    // }
-    // for (let i = 0; i < 1; i++) {
-    //     // move the shape down at a rate of (shape Fall Rate) drops per second
-    //     if (!paused && frameCount % int(30 / shapeFallRate) === 0) {
-    //         if (ai.movementPlan === null) {
-    //             ai.calculateMovementPlan2(game.currentShape, game.heldShape, game.nextShape, game.deadBlocksMatrix);
-    //         }
-    //
-    //         let nextMove = ai.getNextMove();
-    //
-    //         switch (nextMove) {
-    //             case "ALL DOWN":
-    //                 let downMoveMultiplier = 2;
-    //                 // let downMoveMultiplier = 2;
-    //                 while (ai.movementPlan.moveHistoryList.length > 0 && downMoveMultiplier > 0) {
-    //                     ai.movementPlan.moveHistoryList.splice(0, 1);
-    //                     game.moveShapeDown();
-    //                     downMoveMultiplier -= 1;
-    //                 }
-    //                 break;
-    //             case "HOLD":
-    //                 game.holdShape();
-    //                 break;
-    //             case "ROTATE":
-    //                 game.rotateShape();
-    //                 break;
-    //             case "RIGHT":
-    //                 game.moveShapeRight();
-    //                 break;
-    //             case "LEFT":
-    //                 game.moveShapeLeft();
-    //                 break;
-    //             case "DOWN":
-    //                 game.moveShapeDown();
-    //                 break;
-    //         }
-    //     }
-    //     pop();
-    // }
+    ai.showPossibleMoveNo(possibleAIMoveCounter);
+    if (ai.possibleEndPositions.length > 0 && frameCount % 5 === 0) {
+        possibleAIMoveCounter = (possibleAIMoveCounter + 1) % ai.possibleEndPositions.length;
+    }
+    ai.showBestMove();
+    checkInput();
+
+    if (game.justTetrised) {
+        return;
+    }
+    for (let i = 0; i < 1; i++) {
+        // move the shape down at a rate of (shape Fall Rate) drops per second
+        if (!paused && frameCount % int(30 / shapeFallRate) === 0) {
+            if (ai.movementPlan === null) {
+                ai.calculateMovementPlan2(game.currentShape, game.heldShape, game.nextShape, game.deadBlocksMatrix);
+            }
+    
+            let nextMove = ai.getNextMove();
+    
+            switch (nextMove) {
+                case "ALL DOWN":
+                    let downMoveMultiplier = 2;
+                    // let downMoveMultiplier = 2;
+                    while (ai.movementPlan.moveHistoryList.length > 0 && downMoveMultiplier > 0) {
+                        ai.movementPlan.moveHistoryList.splice(0, 1);
+                        game.moveShapeDown();
+                        downMoveMultiplier -= 1;
+                    }
+                    break;
+                case "HOLD":
+                    game.holdShape();
+                    break;
+                case "ROTATE":
+                    game.rotateShape();
+                    break;
+                case "RIGHT":
+                    game.moveShapeRight();
+                    break;
+                case "LEFT":
+                    game.moveShapeLeft();
+                    break;
+                case "DOWN":
+                    game.moveShapeDown();
+                    break;
+            }
+        }
+        pop();
+    }
+    // end comment here
 }
 
 function writeCurrentMatrixStats() {
