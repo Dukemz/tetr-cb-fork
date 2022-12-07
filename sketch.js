@@ -70,11 +70,12 @@ function draw() {
     writeCurrentOptimisations();
     writeCurrentMatrixStats();
 
+    /*
     ai.showPossibleMoveNo(possibleAIMoveCounter);
     if (ai.possibleEndPositions.length > 0 && frameCount % 5 === 0) {
         possibleAIMoveCounter = (possibleAIMoveCounter + 1) % ai.possibleEndPositions.length;
     }
-    ai.showBestMove();
+    ai.showBestMove(); */
     checkInput();
 
     if (game.justTetrised) {
@@ -83,21 +84,21 @@ function draw() {
     for (let i = 0; i < 1; i++) {
         // move the shape down at a rate of (shape Fall Rate) drops per second
         if (!paused && frameCount % int(30 / shapeFallRate) === 0) {
-            if (ai.movementPlan === null) {
-                ai.calculateMovementPlan2(game.currentShape, game.heldShape, game.nextShape, game.deadBlocksMatrix);
-            }
+            //if (ai.movementPlan === null) {
+            //    ai.calculateMovementPlan2(game.currentShape, game.heldShape, game.nextShape, game.deadBlocksMatrix);
+            //}
     
-            let nextMove = ai.getNextMove();
+            //let nextMove = ai.getNextMove();
     
             switch (nextMove) {
                 case "ALL DOWN":
                     let downMoveMultiplier = 2;
                     // let downMoveMultiplier = 2;
-                    while (ai.movementPlan.moveHistoryList.length > 0 && downMoveMultiplier > 0) {
+                    /*while (ai.movementPlan.moveHistoryList.length > 0 && downMoveMultiplier > 0) {
                         ai.movementPlan.moveHistoryList.splice(0, 1);
                         game.moveShapeDown();
                         downMoveMultiplier -= 1;
-                    }
+                    }*/
                     break;
                 case "HOLD":
                     game.holdShape();
@@ -241,7 +242,7 @@ function keyPressed() {
         paused = !paused;
     }
     if (key === 'A') {
-        ai.getMove(game.currentShape, game.heldShape, game.nextShape, game.deadBlocksMatrix);
+        //ai.getMove(game.currentShape, game.heldShape, game.nextShape, game.deadBlocksMatrix);
     }
     if (key == 'R') {
         replayingMove = !replayingMove;
