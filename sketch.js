@@ -90,15 +90,15 @@ function draw() {
     
             //let nextMove = ai.getNextMove();
     
-            switch (nextMove) {
+            /*switch (nextMove) {
                 case "ALL DOWN":
                     let downMoveMultiplier = 2;
                     // let downMoveMultiplier = 2;
-                    /*while (ai.movementPlan.moveHistoryList.length > 0 && downMoveMultiplier > 0) {
+                    while (ai.movementPlan.moveHistoryList.length > 0 && downMoveMultiplier > 0) {
                         ai.movementPlan.moveHistoryList.splice(0, 1);
                         game.moveShapeDown();
                         downMoveMultiplier -= 1;
-                    }*/
+                    }
                     break;
                 case "HOLD":
                     game.holdShape();
@@ -115,7 +115,7 @@ function draw() {
                 case "DOWN":
                     game.moveShapeDown();
                     break;
-            }
+            }*/
         }
         pop();
     }
